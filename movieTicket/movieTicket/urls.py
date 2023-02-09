@@ -19,5 +19,8 @@ from ticketBooking import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name = "index")
+    # path('', views.index, name = "index"),
+    path('contact/', views.contact, name = "contact"),
+    path('login', views.loginUser, name ="loginUser"),
+    path('signup', views.signup, name ="signup")
 ]

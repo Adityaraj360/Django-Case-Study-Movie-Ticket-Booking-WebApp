@@ -1,5 +1,5 @@
 from django.contrib import admin
-from ticketBooking.models import Person
+# from ticketBooking.models import SignUp
 # Register your models here.
 
-admin.site.register(Person)
+# admin.site.register(SignUp)

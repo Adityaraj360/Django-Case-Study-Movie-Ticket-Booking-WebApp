@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+</head>
+<body>
+  <div class="container">
+    <h1>Signup</h1>
+    <form action="" method="POST">
+        {% csrf_token %}       
+        <!-- <label for="username">Username: </label> 
+        {{form.username }}
+        
+        <label for="password">Password: </label>
+        {{form.password1}}
+
+        <label for="email">Email: </label>
+        {{form.email}}
+
+        <label for="phone">Phone No : </label>
+        {{form.phone}} -->
+        {{form.as_p}}
+
+        <!-- {% for field in form %}
+            {{field.label}}
+            {{field}}
+            <br>
+        {% endfor %} -->
+        <h4>Already have an Account?<a href="{% url 'login' %}">Login</a></h4>
+        <input type="submit" value="Submit">
+    </form>
+  </div>
+  <!-- <form action="" method="POST">
+      {{form.username}}
+  </form> -->
+</body>
+</html>
+
+
