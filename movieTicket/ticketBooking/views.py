@@ -4,10 +4,21 @@ from django.contrib.auth import authenticate, login, logout
 # from ticketBooking.models import SignUp
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import *
+import json
 # from .forms import LoginForm
 
 # Create your views here.
 from django.contrib.auth.decorators import login_required
+
+def seats(request):
+    return render(request,"seats.html")
+
+def bookings(request,para):
+    Bookings_list = Bookings.objects.all()
+    dict=json.loads(para)
+    temp=Bookings(movie_name=dict['movie'],selected_seats=dict['Seats'],prize=199)
+    temp.save()
+    return render(request,"bookings.html",{'bookings_list' : Bookings_list})
 
 def signup(request):
     form = UserCreationForm()
