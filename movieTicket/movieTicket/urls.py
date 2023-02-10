@@ -25,6 +25,7 @@ urlpatterns = [
     path('logout', views.logoutUser, name ="logout"),
     path('movieList', views.movieList, name = "movieList"),
     path('movieAdd', views.movieAdd, name = "movieAdd"),
-    path('movieDelete/<str:pk>', views.movieDelete, name = "movieDelete")
+    path('movieDelete/<str:pk>', views.movieDelete, name = "movieDelete"),
+    path('adHome', views.adHome, name = "adHome"),
 
 ]

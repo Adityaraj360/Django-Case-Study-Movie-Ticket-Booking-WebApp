@@ -22,10 +22,23 @@ def signup(request):
     return render(request, 'signup.html',context) 
 
 def loginUser(request):
+    admin_username = "admin12345"
+    admin_password = "Newuser@12345"
     if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
         form = AuthenticationForm(request, data = request.POST)
         if form.is_valid():
             user = form.get_user()
+            if admin_username == username and admin_password == password:
+                # print("Admin")
+                # print({admin_username : username, admin_password : password})
+                login(request, user)
+                return redirect('adHome')
+            else:
+                print("Non Admin")
+                print({admin_username : username, admin_password : password})
+
             login(request, user)
             return redirect('home')
         else:
@@ -73,3 +86,6 @@ def movieDelete(request,pk):
     movie = Movies.objects.get(id=pk)
     movie.delete()  
     return redirect('movieList')
+
+def adHome(request):
+    return render(request, 'adHome.html')
