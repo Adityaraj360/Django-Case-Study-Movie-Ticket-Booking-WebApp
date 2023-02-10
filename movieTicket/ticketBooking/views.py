@@ -16,3 +16,6 @@ def index(request):
         temp.save()
         print("Data added")
     return render(request, 'index.html') 
+
+def bookings(request):
+    return render(request, 'bookings.html') 
