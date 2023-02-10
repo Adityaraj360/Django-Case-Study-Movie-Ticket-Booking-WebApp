@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/mainStyle.css' %}">
+    <link rel="stylesheet" href="{% static 'css/details.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&display=swap" rel="stylesheet">
+</head>
+<body bgcolor="#FFFDD0">
+     <center>
+        <br>
+        <h3> <font face="Verdana" color="darkblue">    MOVIE  DETAILS   </font></h3>
+        
+        <div class="container">
+  
+          
+          <font size="15">Movie Name : &nbsp;</font>
+          <font face="Courier New" size=10 color="Black" ><b>{{movie.name}}</b></font>
+          <br><br>
+        
+          <table class="table">
+            <thead>
+              <tr>
+
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><img src="{{ movie.image }}" width="300px" height="400px" class="image" alt=""></td>
+                <td scope="row">
+                  <ul style="list-style: none; font-size: 27px; font-family: 'Josefin Sans', sans-serif;">
+                    <li><b>Name : </b>{{ movie.name }}</li>
+                    <li><b>Release Date :</b> {{ movie.date }}</li>
+                    <li><b>Duration : </b>{{ movie.duration }}</li>
+                    <li><b>Genre : </b>{{ movie.type }}</li>
+                    <li><b>Language : </b>{{ movie.language }}</li>
+                    <li><b>Rating : </b>{{ movie.rating }}</li>
+                    <li><b>Price : </b>{{ movie.price }}</li>
+                  </ul>  
+                </td>
+
+        
+              </tr>
+            </tbody>
+          </table>
+          <br>
+        </div>
+    </center>
+    <br>
+</body>
+</html>
