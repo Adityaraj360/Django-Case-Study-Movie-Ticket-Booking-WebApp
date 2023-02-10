@@ -19,8 +19,12 @@ from ticketBooking import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('', views.index, name = "index"),
-    path('contact/', views.contact, name = "contact"),
-    path('login', views.loginUser, name ="loginUser"),
-    path('signup', views.signup, name ="signup")
+    path('', views.loginUser, name ="login"),
+    path('home', views.home, name = "home"),
+    path('signup', views.signup, name ="signup"),
+    path('logout', views.logoutUser, name ="logout"),
+    path('movieList', views.movieList, name = "movieList"),
+    path('movieAdd', views.movieAdd, name = "movieAdd"),
+    path('movieDelete/<str:pk>', views.movieDelete, name = "movieDelete")
+
 ]

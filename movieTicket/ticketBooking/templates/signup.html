@@ -10,24 +10,15 @@
     <h1>Signup</h1>
     <form action="" method="POST">
         {% csrf_token %}       
-        <!-- <label for="username">Username: </label> 
+        <label for="username">Username: </label> 
         {{form.username }}
-        
+        <br>
         <label for="password">Password: </label>
         {{form.password1}}
-
-        <label for="email">Email: </label>
-        {{form.email}}
-
-        <label for="phone">Phone No : </label>
-        {{form.phone}} -->
-        {{form.as_p}}
-
-        <!-- {% for field in form %}
-            {{field.label}}
-            {{field}}
-            <br>
-        {% endfor %} -->
+        <br>
+        <label for="password">Confirm Password: </label>
+        {{form.password2}}
+        <br>
         <h4>Already have an Account?<a href="{% url 'login' %}">Login</a></h4>
         <input type="submit" value="Submit">
     </form>

@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Add</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="{% static 'css/mainStyle.css' %}"> -->
+    <style>
+        
+    </style>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="{% url 'home' %}">MAKE MY SHOW<span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'movieAdd' %}">Add Movie</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " href="{% url 'movieList' %}">Movie List</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link justify-content-right" href="{% url 'logout' %}">Logout</a>
+              </li>
+            </ul>
+          </div>  </div>
+      </nav>
+</head>
+
+<body>
+  <div class="container">
+    <h1 class="text-center">Add Movie</h1>
+    <form action="" method="POST">
+        {% csrf_token %}      
+        <form>
+            <div class="form-group">
+              <label for="movieName">Movie Name </label>
+              <input type="text" class="form-control" id="movieName"  placeholder="Enter Movie Name" name="movieName">
+              
+            </div>
+        
+            <div class="form-group">
+                <label for="image">Movie Image</label>
+                <input type="file" class="form-control" id="exampleInputPassword1" name="image">
+            </div>
+
+            <div class="form-group">
+              <label for="date">Release Date</label>
+              <input type="date" class="form-control" id="exampleInputPassword1" name="date">
+            </div>
+
+            <div class="form-group">
+                <label for="duration">Movie Duration</label>
+                <input type="text" class="form-control" id="exampleInputPassword1" name="duration" placeholder = "Enter Duration">
+            </div>
+
+            <div class="form-group">
+                <label for="movieType">Movie Type</label>
+                <input type="text" class="form-control" id="exampleInputPassword1" name="movietype" placeholder="Enter movie Genre">
+            </div>
+
+            <div class="form-group">
+                <label for="language">Language</label>
+                <input type="text" class="form-control" id="exampleInputPassword1" name="language">
+            </div>
+
+            <div class="form-group">
+                <label for="rating">Rating</label>
+                <input type="text" class="form-control" id="exampleInputPassword1" name="rating">
+            </div>
+
+            <div class="form-group">
+                <label for="trailer">Trailer Link</label>
+                <input type="text" class="form-control" id="exampleInputPassword1" name="trailer">
+            </div>
+
+            <div class="form-group">
+                <label for="price">Ticket Price</label>
+                <input type="number" class="form-control" id="exampleInputPassword1" name="price">
+            </div>
+
+
+            
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        <!-- <h4>Don't Have an Account?<a href="{% url 'home' %}">Signup</a></h4> -->
+        
+    </form>
+  </div>
+</body>
+</html>
