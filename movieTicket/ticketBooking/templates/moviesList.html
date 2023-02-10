@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie List</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/mainStyle.css' %}">
+    <style>
+        
+    </style>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="{% url 'home' %}">MAKE MY SHOW<span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'movieAdd' %}">Add Movie</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " href="{% url 'movieList' %}">Movie List</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link justify-content-right" href="{% url 'logout' %}">Logout</a>
+              </li>
+            </ul>
+          </div>  </div>
+      </nav>
+</head>
+
+<body bgcolor="#FFFDD0">
+    <!-- <marquee bgcolor="#000000" style="color: #FFFFFF; font-size: xx-large; ; font-family: Book Antiqua" behavior="alternate" style=" scroll-behavior: smooth; " scrollamount="300">/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\</marquee> -->
+    <center>
+        <br>
+        <h3> <font face="Verdana" color="darkblue">    MOVIE  DETAILS   </font></h3>
+        
+        <div>
+  
+          <!-- <img src="{{baseUrl}}/p{{d.image}}" alt=""> -->
+          <font size="15">Movie Name : &nbsp;</font>
+          <font face="Courier New" size=10 color="Blue" ><span class="blinking" ><b>{{d.name}}</b></span></font>
+          <br><br>
+          <table class="table">
+            <thead>
+              <tr>
+                <!-- <th scope="col" class = "padd">#</th> -->
+                <th scope="col">Name</th>
+                <th scope="col">Image</th>
+                <th scope="col">Release Date</th>
+                <th scope="col">Duration</th>
+                <th scope="col">Type</th>
+                <th scope="col">Language</th>
+                <th scope="col">Rating</th>
+                <th scope="col">Price</th>
+                <th scope="col">Action</th> 
+
+              </tr>
+            </thead>
+            <tbody>
+              {% for movie in movies_list %}
+              <tr>
+                <th scope="row">{{ movie.name }}</th>
+                <td>{{ movie.image }}</td>
+                <td>{{ movie.date }}</td>
+                <td>{{ movie.duration }}</td>
+                <td>{{ movie.type }}</td>
+                <td>{{ movie.language }}</td>
+                <td>{{ movie.rating }}</td>
+                <td>{{ movie.price }}</td>
+                <td><a href="{% url 'movieDelete' movie.id %}">DELETE</a></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <br>
+          <!-- <button onclick="window.location.href = '/signup/';" -->
+          <span>&nbsp; BOOK NOW &nbsp; </span></button>
+          <br>
+          <!-- <a href="/index/"><h3><< Click here to goto Home</h3></a> -->
+      
+        </div>
+    </center>
+    <br>
+    <!-- <div>
+      {% for data in movies_list %}
+        {{ data.name }}
+        {{ data.price }}
+      {% endfor %}
+    </div> -->
+    <!-- <marquee bgcolor="#001180" style="color: #FFFFFF; font-size:xx-large; font-family: Book Antiqua" behavior="alternate" style=" scroll-behavior: smooth; " scrollamount="300">/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\-/-\</marquee> -->
+</body>
+</html>
