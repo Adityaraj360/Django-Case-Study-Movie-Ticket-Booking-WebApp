@@ -4,10 +4,21 @@ from django.contrib.auth import authenticate, login, logout
 # from ticketBooking.models import SignUp
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import *
+import json
 # from .forms import LoginForm
 
 # Create your views here.
 from django.contrib.auth.decorators import login_required
+
+def seats(request):
+    return render(request,"seats.html")
+
+def bookings(request,para):
+    Bookings_list = Bookings.objects.all()
+    dict=json.loads(para)
+    temp=Bookings(movie_name=dict['movie'],selected_seats=dict['Seats'],prize=199)
+    temp.save()
+    return render(request,"bookings.html",{'bookings_list' : Bookings_list})
 
 def signup(request):
     form = UserCreationForm()
@@ -71,9 +82,11 @@ def movieAdd(request):
         print([name, str(date), duration,movietype,language,rating,trailer,price])
         temp = Movies(name = name, image = image, date = date, duration = duration, type = movietype, language = language, rating = rating, trailer = trailer, price = price)
         temp.save()
-        print("Data Saved")
+        print("Data added")
         return redirect('home')
-    return render(request, 'movieAdd.html')
+    return render(request, 'index.html') 
+
+
 
 @login_required(login_url='login')
 def movieList(request):
@@ -86,6 +99,9 @@ def movieDelete(request,pk):
     movie = Movies.objects.get(id=pk)
     movie.delete()  
     return redirect('movieList')
+<<<<<<< HEAD
 
 def adHome(request):
     return render(request, 'adHome.html')
+=======
+>>>>>>> ffe7110f2bf862637d96d15d86184e7b60c7cab2
