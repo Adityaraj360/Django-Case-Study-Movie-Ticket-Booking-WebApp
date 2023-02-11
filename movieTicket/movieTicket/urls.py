@@ -20,7 +20,7 @@ from ticketBooking import views
 
 urlpatterns = [   
     path('admin/', admin.site.urls),
-    path('seats', views.seats, name = "seats"),
+    path('seats/<str:pk>', views.seats, name = "seats"),
     path('', views.loginUser, name ="login"),
     path('home', views.home, name = "home"),
     path('signup', views.signup, name ="signup"),

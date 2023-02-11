@@ -1,17 +1,20 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
 # from ticketBooking.models import SignUp
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import *
 import json
+
 # from .forms import LoginForm
 
 # Create your views here.
 from django.contrib.auth.decorators import login_required
 
-def seats(request):
-    return render(request,"seats.html")
+def seats(request,pk):
+    movie = Movies.objects.get(id=pk)
+    return render(request,"seats.html", {'movie' : movie})
 
 def bookings(request,para):
     Bookings_list = Bookings.objects.all()
@@ -54,7 +57,8 @@ def loginUser(request):
             login(request, user)
             return redirect('home')
         else:
-            return redirect('signup')
+            messages.error(request,'username or password not correct')
+            return redirect('login')
 
     else:
         form = AuthenticationForm(request, data = request.POST)

@@ -4,18 +4,38 @@
 <head>
   <title>Login Page</title>
   <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+  <link rel="stylesheet" href="{% static 'css/login.css' %}">
 </head>
 <body>
   <div class="container">
-    <h1>Login</h1>
     <form action="" method="POST">
-        {% csrf_token %}       
-        <label for="username">Username: </label>
-        <input type="text" id="username" name="username"><br><br>
+        {% csrf_token %}    
+        
+      <div class="container" onclick="onclick">
+        <div class="top"></div>
+        <div class="bottom"></div>
+        <div class="center">
+          <h2>Please Sign In</h2>
+          <input type="text" name="username" placeholder="username" required/>
+          <input type="password" name="password" placeholder="password" required/>
+
+          <h4>Don't Have an Account?<a href="{% url 'signup' %}">Signup</a></h4>
+          <input type="submit" value="Submit">
+        </div>
+      </div>   
+        <!-- <label for="username">Username: </label>
+        <input type="text" id="username" name="username" required><br><br>
         <label for="password">Password: </label>
-        <input type="password" id="password" name="password"><br><br>
-        <h4>Don't Have an Account?<a href="{% url 'signup' %}">Signup</a></h4>
-        <input type="submit" value="Submit">
+        <input type="password" id="password" name="password" required><br><br> -->
+        <!-- <h4>Don't Have an Account?<a href="{% url 'signup' %}">Signup</a></h4>
+        <input type="submit" value="Submit"> -->
+        {% for message in messages %}
+    
+        <div class="alert alert-success">
+              <h3 style="font-family: Verdana, Geneva, Tahoma, sans-serif;">{{ message }}</h3>
+        </div>  
+
+        {% endfor %}
     </form>
   </div>
 </body>
