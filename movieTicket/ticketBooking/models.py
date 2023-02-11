@@ -28,13 +28,13 @@ class Bookings(models.Model):
     selected_seats=models.CharField(max_length=100)
     u_name=models.CharField(max_length=30,default="Nikitha")
     
-    def __str__(self):
-        return str(self.u_name)
+    # def __str__(self):
+    #     return str(self.u_name)
 
 
 class Movies(models.Model):
     name = models.CharField(max_length=50)
-    image=models.ImageField(upload_to="pics",default="default.png")
+    image=models.CharField(max_length=255)
     date = models.DateField()
     duration = models.CharField(max_length=50)
     type = models.CharField(max_length=50)
