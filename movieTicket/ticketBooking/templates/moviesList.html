@@ -15,10 +15,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
-                <a class="nav-link" href="{% url 'adHome' %}">MAKE MY SHOW<span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'movieAdd' %}">Add Movie</a>
+                <a class="nav-link" href="{% url 'movieAdd' %}">MAKE MY SHOW<span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
                 <a class="nav-link " href="{% url 'movieList' %}">Movie List</a>
@@ -43,18 +40,20 @@
           <font size="15">Movie Name : &nbsp;</font>
           <font face="Courier New" size=10 color="Blue" ><span class="blinking" ><b>{{d.name}}</b></span></font>
           <br><br>
-          <table class="table">
+          <div class="container">
+            <table class="table" style="align-items: center;">
             <thead>
               <tr>
                 <!-- <th scope="col" class = "padd">#</th> -->
-                <th scope="col">Name</th>
-                <th scope="col">Image</th>
+                <th scope="col">Movie</th>
+                <th scope="col">Details</th>
+                <!-- <th scope="col">Image</th>
                 <th scope="col">Release Date</th>
                 <th scope="col">Duration</th>
                 <th scope="col">Type</th>
                 <th scope="col">Language</th>
                 <th scope="col">Rating</th>
-                <th scope="col">Price</th>
+                <th scope="col">Price</th> -->
                 <th scope="col">Action</th> 
 
               </tr>
@@ -62,19 +61,32 @@
             <tbody>
               {% for movie in movies_list %}
               <tr>
-                <th scope="row">{{ movie.name }}</th>
-                <td>{{ movie.image }}</td>
-                <td>{{ movie.date }}</td>
+                
+                <td><img src="{{ movie.image }}" width="150" height="250" alt=""></td>
+                <td>
+                  <ul style="list-style-type: none;">
+                      <li>{{movie.name}}</li>
+                      <li>{{ movie.date }}</li>
+                      <li>{{ movie.duration }}</li>
+                      <li>{{ movie.type }}</li>
+                      <li>{{ movie.language }}</li>
+                      <li>{{ movie.rating }}</li>
+                      <li>{{ movie.price }}</li>
+                  </ul>
+                  
+                <!-- </td>
                 <td>{{ movie.duration }}</td>
                 <td>{{ movie.type }}</td>
                 <td>{{ movie.language }}</td>
                 <td>{{ movie.rating }}</td>
-                <td>{{ movie.price }}</td>
+                <td>{{ movie.price }}</td> -->
                 <td><a href="{% url 'movieDelete' movie.id %}">DELETE</a></td>
               </tr>
               {% endfor %}
             </tbody>
           </table>
+        </div>
+
           <br>
           <!-- <button onclick="window.location.href = '/signup/';" -->
           <br>

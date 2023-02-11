@@ -32,6 +32,7 @@ def signup(request):
     print(context)
     return render(request, 'signup.html',context) 
 
+
 def loginUser(request):
     admin_username = "admin12345"
     admin_password = "Newuser@12345"
@@ -45,7 +46,7 @@ def loginUser(request):
                 # print("Admin")
                 # print({admin_username : username, admin_password : password})
                 login(request, user)
-                return redirect('adHome')
+                return redirect('movieAdd')
             else:
                 print("Non Admin")
                 print({admin_username : username, admin_password : password})
@@ -65,7 +66,8 @@ def logoutUser(request):
 
 @login_required(login_url='login')
 def home(request):
-    return render(request, 'home.html')
+    movies_list = Movies.objects.all()
+    return render(request, 'home.html', {'movies_list' : movies_list})
 
 @login_required(login_url='login')
 def movieAdd(request):
@@ -83,8 +85,8 @@ def movieAdd(request):
         temp = Movies(name = name, image = image, date = date, duration = duration, type = movietype, language = language, rating = rating, trailer = trailer, price = price)
         temp.save()
         print("Data added")
-        return redirect('home')
-    return render(request, 'index.html') 
+        return redirect('movieList')
+    return render(request, 'movieAdd.html') 
 
 
 
@@ -99,9 +101,11 @@ def movieDelete(request,pk):
     movie = Movies.objects.get(id=pk)
     movie.delete()  
     return redirect('movieList')
-<<<<<<< HEAD
+
+@login_required(login_url='login')
+def details(request, pk):
+    movie = Movies.objects.get(id=pk)
+    return render(request, 'details.html', {'movie' : movie})
 
 def adHome(request):
     return render(request, 'adHome.html')
-=======
->>>>>>> ffe7110f2bf862637d96d15d86184e7b60c7cab2

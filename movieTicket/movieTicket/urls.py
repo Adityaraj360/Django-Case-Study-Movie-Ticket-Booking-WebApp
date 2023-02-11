@@ -28,10 +28,7 @@ urlpatterns = [
     path('movieList', views.movieList, name = "movieList"),
     path('movieAdd', views.movieAdd, name = "movieAdd"),
     path('movieDelete/<str:pk>', views.movieDelete, name = "movieDelete"),
-<<<<<<< HEAD
+    path('details/<str:pk>', views.details, name = "details"),
     path('adHome', views.adHome, name = "adHome"),
 
-=======
-    path('bookings/<str:para>',views.bookings,name="bookings"),
->>>>>>> ffe7110f2bf862637d96d15d86184e7b60c7cab2
 ]
