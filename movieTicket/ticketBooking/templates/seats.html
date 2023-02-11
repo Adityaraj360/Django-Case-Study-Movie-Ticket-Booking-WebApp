@@ -10,7 +10,6 @@
     <title>Movie Seat Booking</title>
   </head>
   <body>
-    <div id="loader" class="center"></div>
     <div class="movie-container">
       <label> Movie:</label>
       <select id="movie">
@@ -35,70 +34,67 @@
     </ul>
     <div class="container">
       <div class="screen"></div>
-
-      <div class="row">
-        <div id=1 class="seat"></div>
-        <div id=2 class="seat"></div>
-        <div id=3 class="seat"></div>
-        <div id=4 class="seat"></div>
-        <div id=5 class="seat"></div>
-        <div id=6 class="seat"></div>
-        <div id=7 class="seat"></div>
-        <div id=8 class="seat"></div>
-      </div>
-
-      <div class="row">
-        <div id=9 class="seat"></div>
-        <div id=10 class="seat"></div>
-        <div id=11 class="seat"></div>
-        <div id=12  class="seat"></div>
-        <div id=13 class="seat"></div>
-        <div id=14 class="seat"></div>
-        <div id=15 class="seat"></div>
-        <div id=16 class="seat"></div>
-      </div>
-      <div class="row">
-        <div id=17 class="seat"></div>
-        <div id=18 class="seat"></div>
-        <div id=19 class="seat"></div>
-        <div id=20 class="seat"></div>
-        <div id=21 class="seat"></div>
-        <div id=22 class="seat"></div>
-        <div id=23 class="seat"></div>
-        <div id=24 class="seat"></div>
-      </div>
-      <div class="row">
-        <div id=25 class="seat"></div>
-        <div id=26 class="seat"></div>
-        <div id=27 class="seat"></div>
-        <div id=28 class="seat"></div>
-        <div id=29 class="seat"></div>
-        <div id=30 class="seat"></div>
-        <div id=31 class="seat"></div>
-        <div id=32 class="seat"></div>
-      </div>
-      <div class="row">
-        <div id=33 class="seat"></div>
-        <div id=34 class="seat"></div>
-        <div id=35 class="seat"></div>
-        <div id=36 class="seat"></div>
-        <div id=37 class="seat"></div>
-        <div id=38 class="seat"></div>
-        <div id=39 class="seat"></div>
-        <div id=40 class="seat"></div>
-      </div>
-      <div class="row">
-        <div id=41 class="seat"></div>
-        <div id=42 class="seat"></div>
-        <div id=43 class="seat"></div>
-        <div id=44 class="seat"></div>
-        <div id=45 class="seat"></div>
-        <div id=46 class="seat"></div>
-        <div id=47 class="seat"></div>
-        <div id=48 class="seat"></div>
-      </div>
+    <div class="row"> 
+    {% for seat in all_seats %}
+        <div id= {{ seat.S_no1 }} 
+        {% if seat.Status1 == "Unbooked" %}
+        class="seat"
+        {% else %}
+        class="seat sold"
+        {% endif %}></div>
+    {% endfor %}
     </div>
-
+    <div class="row"> 
+    {% for seat in all_seats  %}
+        <div id= {{ seat.S_no2 }} 
+        {% if seat.Status2 == "Unbooked" %}
+        class="seat"
+        {% else %}
+        class="seat sold"
+        {% endif %}></div>
+    {% endfor %}
+    </div>
+    <div class="row"> 
+    {% for seat in all_seats %}
+        <div id= {{ seat.S_no3 }} 
+        {% if seat.Status3 == "Unbooked" %}
+        class="seat"
+        {% else %}
+        class="seat sold"
+        {% endif %}></div>
+    {% endfor %}
+    </div>
+    <div class="row"> 
+    {% for seat in all_seats %}
+        <div id= {{ seat.S_no4 }} 
+        {% if seat.Status4 == "Unbooked" %}
+        class="seat"
+        {% else %}
+        class="seat sold"
+        {% endif %}></div>
+    {% endfor %}
+    </div>
+    <div class="row">
+    {% for seat in all_seats %} 
+        <div id= {{ seat.S_no5 }} 
+        {% if seat.Status5 == "Unbooked" %}
+        class="seat"
+        {% else %}
+        class="seat sold"
+        {% endif %}></div>
+    {% endfor %}
+    </div>
+    <div class="row"> 
+    {% for seat in all_seats %}
+        <div id= {{ seat.S_no6 }} 
+        {% if seat.Status6 == "Unbooked" %}
+        class="seat"
+        {% else %}
+        class="seat sold"
+        {% endif %}></div>
+    {% endfor %}
+    </div>
+  </div>
     <p class="text">
       You have selected <span id="count">0</span> seat for a price of RS.<span id="total">0</span>
     </p>

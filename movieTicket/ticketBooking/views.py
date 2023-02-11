@@ -5,18 +5,41 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import *
 import json
+from django.core import serializers
 # from .forms import LoginForm
 
 # Create your views here.
 from django.contrib.auth.decorators import login_required
 
+
 def seats(request):
-    return render(request,"seats.html")
+    all_seats=Seats.objects.all()
+    return render(request,"seats.html",{'all_seats':all_seats})
 
 def bookings(request,para):
-    Bookings_list = Bookings.objects.all()
     dict=json.loads(para)
-    temp=Bookings(movie_name=dict['movie'],selected_seats=dict['Seats'],prize=199)
+    for i in range(len(dict['Seats'])):
+        dict['Seats'][i]+=1
+        if(dict['Seats'][i]<=8):
+            f=Seats.objects.filter(S_no1=dict['Seats'][i])
+            f.update(Status1="Booked")
+        elif(dict['Seats'][i]<=16):
+            f=Seats.objects.filter(S_no2=dict['Seats'][i])
+            f.update(Status2="Booked")
+        elif(dict['Seats'][i]<=24):
+            f=Seats.objects.filter(S_no3=dict['Seats'][i])
+            f.update(Status3="Booked")
+        elif(dict['Seats'][i]<=32):
+            f=Seats.objects.filter(S_no4=dict['Seats'][i])
+            f.update(Status4="Booked")
+        elif(dict['Seats'][i]<=40):
+           f= Seats.objects.filter(S_no5=dict['Seats'][i])
+           f.update(Status5="Booked")
+        elif(dict['Seats'][i]<=48):
+           f=Seats.objects.filter(S_no6=dict['Seats'][i])
+           f.update(Status6="Booked")
+    Bookings_list = Bookings.objects.all()       
+    temp=Bookings(movie_name=dict['movie'],selected_seats=dict['Seats'],price=dict['price'])
     temp.save()
     return render(request,"bookings.html",{'bookings_list' : Bookings_list})
 
