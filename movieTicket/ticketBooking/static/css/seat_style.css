@@ -51,12 +51,16 @@ body {
 
 .seat {
   background-color: #444451;
-  height: 26px;
-  width: 32px;
+  height: 30px;
+  width: 34px;
   margin: 3px;
-  font-size: 50px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+}
+.index
+{
+  margin-left: 10px;
+  font-size: xx-small;
 }
 
 .seat.selected {
@@ -65,6 +69,7 @@ body {
 
 .seat.sold {
   background-color: #fff;
+  
 }
 
 .seat:nth-of-type(2) {

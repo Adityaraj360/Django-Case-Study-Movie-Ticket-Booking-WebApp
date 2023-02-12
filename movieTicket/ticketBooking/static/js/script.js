@@ -4,18 +4,17 @@ const count = document.getElementById("count");
 const total = document.getElementById("total");
 const movieSelect = document.getElementById("movie");
 const movieName= document.getElementById("movie_name");
+const time=document.getElementById("time")
 //populateUI();
-
+//const totalSeats=[...Array(48).keys()].map(x => ++x);
 
 // Update total and count
 function updateSelectedCount() {
-  const selectedSeats = document.querySelectorAll(".row .seat.selected");
-  const seatsIndex = [...selectedSeats].map((seat) => [...seats].indexOf(seat));
-  localStorage.setItem("selectedSeats", JSON.stringify(seatsIndex));
+  const selectedSeats = Array.from(document.querySelectorAll(".row .seat.selected")).map(x => x.innerText);
+  localStorage.setItem("selectedSeats",selectedSeats);
   const selectedSeatsCount = selectedSeats.length;
   count.innerText = selectedSeatsCount;
   total.innerText = selectedSeatsCount * 199;
-  //alert("by html:"+movieName.innerText+" "+total.innerText+" "+JSON.stringify(seatsIndex))
 }
 
 // Seat click event
@@ -35,10 +34,9 @@ function checkout()
   if(count.innerHTML > 0)
 {
   document.getElementById("checkout").innerHTML='<i class="fa fa-spinner fa-spin"></i>"Booking"';
-  const selectedSeats = document.querySelectorAll(".row .seat.selected");
-  const seatsIndex = [...selectedSeats].map((seat) => [...seats].indexOf(seat));
-  const para=JSON.stringify({'movie':movieName.innerText,'Seats':seatsIndex, 'price': total.innerText})
-  setTimeout(() => { window.location.href='bookings/'+para}, 5000);
+  const selectedSeats = Array.from(document.querySelectorAll(".row .seat.selected")).map(x => x.innerText);
+  const para=JSON.stringify({'movie':movieName.innerText,'Seats':selectedSeats, 'price': total.innerText, 'time':time.innerText})
+  setTimeout(() => {window.location= 'bookings/'+para}, 5000);
 }
 }
 

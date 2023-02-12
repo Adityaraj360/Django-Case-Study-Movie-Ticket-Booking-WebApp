@@ -13,34 +13,34 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
 
-def seats(request,pk):
+def seats(request,pk,time):
     movie = Movies.objects.get(id=pk)
-    all_seats= Seats.objects.all()
-    return render(request,"seats.html", {'movie' : movie, 'all_seats':all_seats})
+    all_seats= Seats.objects.filter(From_time=time)
+    return render(request,"seats.html", {'movie' : movie, 'all_seats':all_seats, 'time':time})
 
-def bookings(request,para):
+def bookings(request,para,pk):
     dict=json.loads(para)
     for i in range(len(dict['Seats'])):
-        dict['Seats'][i]+=1
-        if(dict['Seats'][i]<=8):
-            f=Seats.objects.filter(S_no1=dict['Seats'][i])
+        dict['Seats'][i]=int(dict['Seats'][i])
+        if(dict['Seats'][i]<=7):
+            f=Seats.objects.filter(S_no1=dict['Seats'][i],From_time=dict['time'])
             f.update(Status1="Booked")
-        elif(dict['Seats'][i]<=16):
-            f=Seats.objects.filter(S_no2=dict['Seats'][i])
+        elif(dict['Seats'][i]<=15):
+            f=Seats.objects.filter(S_no2=dict['Seats'][i],From_time=dict['time'])
             f.update(Status2="Booked")
-        elif(dict['Seats'][i]<=24):
-            f=Seats.objects.filter(S_no3=dict['Seats'][i])
+        elif(dict['Seats'][i]<=23):
+            f=Seats.objects.filter(S_no3=dict['Seats'][i],From_time=dict['time'])
             f.update(Status3="Booked")
-        elif(dict['Seats'][i]<=32):
-            f=Seats.objects.filter(S_no4=dict['Seats'][i])
+        elif(dict['Seats'][i]<=31):
+            f=Seats.objects.filter(S_no4=dict['Seats'][i],From_time=dict['time'])
             f.update(Status4="Booked")
-        elif(dict['Seats'][i]<=40):
-           f= Seats.objects.filter(S_no5=dict['Seats'][i])
+        elif(dict['Seats'][i]<=39):
+           f= Seats.objects.filter(S_no5=dict['Seats'][i],From_time=dict['time'])
            f.update(Status5="Booked")
-        elif(dict['Seats'][i]<=48):
-           f=Seats.objects.filter(S_no6=dict['Seats'][i])
+        elif(dict['Seats'][i]<=47):
+           f=Seats.objects.filter(S_no6=dict['Seats'][i],From_time=dict['time'])
            f.update(Status6="Booked")      
-    temp=Bookings(movie_name=dict['movie'],selected_seats=dict['Seats'],price=int(dict['price']),u_name=request.user.get_username())
+    temp=Bookings(movie_name=dict['movie'],selected_seats=dict['Seats'],price=int(dict['price']),u_name=request.user.get_username(),Show_time=dict['time'])
     print(temp)
     temp.save()
     Bookings_list = Bookings.objects.filter(u_name=request.user.get_username())

@@ -72,7 +72,7 @@
                 <div>
                   <label>Available Shows:</label>
                   {% for show in Shows %} 
-                <button type="button" class="btn" style="text-align: center; padding: 0%; "><a href="{% url 'seats' movie.id %}" >{{show.From_time}}-{{show.To_time}}</a></button>
+                <button type="button" class="btn" style="text-align: center; padding: 0%; "><a href="{% url 'seats' movie.id show.From_time %}" >{{show.From_time}}-{{show.To_time}}</a></button>
                    {% endfor %}
               </div>  
                     <br>

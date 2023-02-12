@@ -12,7 +12,9 @@
   <body>
     <div class="movie-container">
       <label> Movie:</label>
-      <label id="movie_name">{{movie.name}}</label>
+      <label id="movie_name">{{movie.name}}</label><br>
+      <label>Show:</label>
+      <label id="time"> {{time}}</label>
       </select> 
     </div>
     <ul class="showcase">
@@ -33,12 +35,12 @@
       <div class="screen"></div>
     <div class="row"> 
     {% for seat in all_seats %}
-        <div id= {{ seat.S_no1 }} 
+        <div 
         {% if seat.Status1 == "Unbooked" %}
         class="seat"
         {% else %}
         class="seat sold"
-        {% endif %}></div>
+        {% endif %}>{{ seat.S_no1 }}</div>
     {% endfor %}
     </div>
     <div class="row"> 
@@ -48,7 +50,7 @@
         class="seat"
         {% else %}
         class="seat sold"
-        {% endif %}></div>
+        {% endif %}>{{ seat.S_no2 }}</div>
     {% endfor %}
     </div>
     <div class="row"> 
@@ -58,7 +60,7 @@
         class="seat"
         {% else %}
         class="seat sold"
-        {% endif %}></div>
+        {% endif %}>{{ seat.S_no3 }}</div>
     {% endfor %}
     </div>
     <div class="row"> 
@@ -68,7 +70,7 @@
         class="seat"
         {% else %}
         class="seat sold"
-        {% endif %}></div>
+        {% endif %}>{{ seat.S_no4 }}</div>
     {% endfor %}
     </div>
     <div class="row">
@@ -78,7 +80,7 @@
         class="seat"
         {% else %}
         class="seat sold"
-        {% endif %}></div>
+        {% endif %}>{{ seat.S_no5 }}</div>
     {% endfor %}
     </div>
     <div class="row"> 
@@ -88,14 +90,14 @@
         class="seat"
         {% else %}
         class="seat sold"
-        {% endif %}></div>
+        {% endif %}>{{ seat.S_no6 }}</div>
     {% endfor %}
     </div>
   </div>
     <p class="text">
       You have selected <span id="count">0</span> seat for a price of RS.<span id="total">0</span>
     </p>
-    <button onclick="checkout()" id="checkout">Book</button>
+    <a id="redirect" href=" "></a><button onclick="checkout()" id="checkout">Book</button></a>
     <script src="{% static 'js/script.js' %}"></script>
   </body>
 </html>
