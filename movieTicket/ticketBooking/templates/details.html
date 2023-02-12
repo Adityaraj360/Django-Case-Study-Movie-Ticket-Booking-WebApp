@@ -54,7 +54,10 @@
                 <div class="col-sm-4" style="padding-top: 20px;">
                     <img src="{{movie.image}}"  width="300" height="500" class="card-img-top" alt="...">
                 </div>
-                      
+                  <div>
+                    {% for show in Shows %}
+
+                  </div>     
                <div class="col-sm-6" style="padding-top: 20px;">
                     <ul style="list-style: none; font-size: 27px; font-family: 'Josefin Sans', sans-serif;">
                     <li><b>Name : </b>{{ movie.name }}</li>
@@ -70,6 +73,7 @@
                     <!-- <button type="button" class="btn btn-outline-danger">Danger</button>     -->
                     </ul>     
                 </div>
+                
                 <button type="button" class="btn" style="text-align: center; padding: 0%; "><a href="{% url 'seats' movie.id %}" >BOOK NOW</a></button>
 
                     <br>

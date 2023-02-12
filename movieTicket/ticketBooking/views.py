@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import *
 import json
-from django.core import serializers
+from django.contrib.auth.models import User
 # from .forms import LoginForm
 
 # Create your views here.
@@ -15,7 +15,8 @@ from django.contrib.auth.decorators import login_required
 
 def seats(request,pk):
     movie = Movies.objects.get(id=pk)
-    return render(request,"seats.html", {'movie' : movie})
+    all_seats= Seats.objects.all()
+    return render(request,"seats.html", {'movie' : movie, 'all_seats':all_seats})
 
 def bookings(request,para):
     dict=json.loads(para)
@@ -38,10 +39,11 @@ def bookings(request,para):
            f.update(Status5="Booked")
         elif(dict['Seats'][i]<=48):
            f=Seats.objects.filter(S_no6=dict['Seats'][i])
-           f.update(Status6="Booked")
-    Bookings_list = Bookings.objects.all()       
-    temp=Bookings(movie_name=dict['movie'],selected_seats=dict['Seats'],price=dict['price'])
+           f.update(Status6="Booked")      
+    temp=Bookings(movie_name=dict['movie'],selected_seats=dict['Seats'],price=int(dict['price']),u_name=request.user.get_username())
+    print(temp)
     temp.save()
+    Bookings_list = Bookings.objects.filter(u_name=request.user.get_username())
     return render(request,"bookings.html",{'bookings_list' : Bookings_list})
 
 def signup(request):
@@ -130,7 +132,8 @@ def movieDelete(request,pk):
 @login_required(login_url='login')
 def details(request, pk):
     movie = Movies.objects.get(id=pk)
-    return render(request, 'details.html', {'movie' : movie})
+    Shows= shows.objects.filter(M_id=pk)
+    return render(request, 'details.html', {'movie' : movie, 'Shows':Shows})
 
 def adHome(request):
     return render(request, 'adHome.html')

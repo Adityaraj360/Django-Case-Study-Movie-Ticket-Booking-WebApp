@@ -30,5 +30,5 @@ urlpatterns = [
     path('movieDelete/<str:pk>', views.movieDelete, name = "movieDelete"),
     path('details/<str:pk>', views.details, name = "details"),
     path('adHome', views.adHome, name = "adHome"),
-
+    path("seats/bookings/<str:para>",views.bookings, name="bookings")
 ]

@@ -1,8 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class shows(models.Model):
-    Show_time=models.TimeField()
+
 
 class Seats(models.Model):
     Status1=models.CharField(max_length=10,default="Unbooked")
@@ -26,10 +25,10 @@ class Bookings(models.Model):
     # Date=models.DateField()
     price=models.IntegerField()
     selected_seats=models.CharField(max_length=100)
-    u_name=models.CharField(max_length=30,default="Nikitha")
+    u_name=models.CharField(max_length=30)
     
-    # def __str__(self):
-    #     return str(self.u_name)
+    def __str__(self):
+        return str(self.u_name)
 
 
 class Movies(models.Model):
@@ -46,3 +45,10 @@ class Movies(models.Model):
     def __str__(self):
         return str(self.name)
 
+
+class shows(models.Model):
+    From_time=models.TimeField(auto_now=False, auto_now_add=False)
+    To_time=models.TimeField(auto_now=False, auto_now_add=False)
+    M_id=models.ForeignKey(Movies,on_delete=models.CASCADE)
+    def __str__(self):
+        return str(self.M_id)

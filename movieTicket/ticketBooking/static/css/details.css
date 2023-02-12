@@ -1,3 +1,7 @@
+div[id^='radio'] label {
+  width: unset;
+  padding: 10px;
+}
 .btn{
     border-color: rgb(207, 0, 0);
     color: dodgerblue;
